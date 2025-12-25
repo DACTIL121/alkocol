@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Главная - АлкоУчет{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <h1>Система учета алкогольной продукции</h1>
+    <p>Управляйте вашим складом алкогольной продукции эффективно и просто</p>
+    
+    {% if not current_user.is_authenticated %}
+        <div class="auth-buttons">
+            <a href="{{ url_for('login') }}" class="btn btn-primary">Войти</a>
+            <a href="{{ url_for('register') }}" class="btn btn-secondary">Зарегистрироваться</a>
+        </div>
+    {% else %}
+        <div class="dashboard-links">
+            <a href="{{ url_for('products') }}" class="btn btn-primary">Перейти к моим продуктам</a>
+            <a href="{{ url_for('add_product') }}" class="btn btn-secondary">Добавить новый продукт</a>
+        </div>
+    {% endif %}
+</div>
+
+<div class="features">
+    <div class="feature">
+        <h3>📦 Учет продукции</h3>
+        <p>Ведите учет всех видов алкогольной продукции</p>
+    </div>
+    <div class="feature">
+        <h3>📊 Статистика</h3>
+        <p>Отслеживайте остатки и движение товаров</p>
+    </div>
+    <div class="feature">
+        <h3>🔒 Безопасность</h3>
+        <p>Персональный доступ к вашим данным</p>
+    </div>
+</div>
+{% endblock %}

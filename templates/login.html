@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Вход - АлкоУчет{% endblock %}
+
+{% block content %}
+<div class="auth-form">
+    <h2>Вход в систему</h2>
+    <form method="POST" action="{{ url_for('login') }}">
+        <div class="form-group">
+            <label for="username">Имя пользователя:</label>
+            <input type="text" id="username" name="username" required class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="password">Пароль:</label>
+            <input type="password" id="password" name="password" required class="form-control">
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">Войти</button>
+    </form>
+
+    <p class="auth-link">
+        Нет аккаунта? <a href="{{ url_for('register') }}">Зарегистрируйтесь</a>
+    </p>
+</div>
+{% endblock %}

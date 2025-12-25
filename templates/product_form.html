@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }} - АлкоУчет{% endblock %}
+
+{% block content %}
+<div class="auth-form">
+    <h2>{{ title }}</h2>
+    <form method="POST">
+        <div class="form-group">
+            <label for="name">Название:</label>
+            <input type="text" id="name" name="name" required 
+                   value="{{ product.name if product else '' }}" class="form-control">
+        </div>
+        
+        <div class="form-group">
+            <label for="category">Категория:</label>
+            <select id="category" name="category" required class="form-control">
+                <option value="">Выберите категорию</option>
+                <option value="Пиво" {% if product and product.category == 'Пиво' %}selected{% endif %}>Пиво</option>
+                <option value="Вино" {% if product and product.category == 'Вино' %}selected{% endif %}>Вино</option>
+                <option value="Крепкий алкоголь" {% if product and product.category == 'Крепкий алкоголь' %}selected{% endif %}>Крепкий алкоголь</option>
+                <option value="Слабоалкогольные напитки" {% if product and product.category == 'Слабоалкогольные напитки' %}selected{% endif %}>Слабоалкогольные напитки</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="type">Тип:</label>
+            <input type="text" id="type" name="type" required 
+                   value="{{ product.type if product else '' }}" class="form-control"
+                   placeholder="Например: лагер, красное сухое, водка">
+        </div>
+        
+        <div class="form-row">
+            <div class="form-group">
+                <label for="volume">Объем (л):</label>
+                <input type="number" id="volume" name="volume" step="0.01" required 
+                       value="{{ product.volume if product else '0.5' }}" class="form-control">
+            </div>
+            
+            <div class="form-group">
+                <label for="strength">Крепость (%):</label>
+                <input type="number" id="strength" name="strength" step="0.1" required 
+                       value="{{ product.strength if product else '5.0' }}" class="form-control">
+            </div>
+        </div>
+        
+        <div class="form-row">
+            <div class="form-group">
+                <label for="quantity">Количество:</label>
+                <input type="number" id="quantity" name="quantity" required 
+                       value="{{ product.quantity if product else '1' }}" class="form-control">
+            </div>
+            
+            <div class="form-group">
+                <label for="price">Цена (руб.):</label>
+                <input type="number" id="price" name="price" step="0.01" required 
+                       value="{{ product.price if product else '0' }}" class="form-control">
+            </div>
+        </div>
+        
+        <div class="form-buttons">
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+            <a href="{{ url_for('products') }}" class="btn btn-secondary">Отмена</a>
+        </div>
+    </form>
+</div>
+{% endblock %}
